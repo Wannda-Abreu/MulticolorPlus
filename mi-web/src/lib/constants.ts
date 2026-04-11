@@ -2,7 +2,7 @@ export const WHATSAPP_PHONE =
   import.meta.env.VITE_WHATSAPP_PHONE || "1234567890";
 
 // Frontend-only auth. Change this before shipping; it is obfuscation, not real security.
-export const ADMIN_PASSWORD = "multicolor-admin-2026";
+export const ADMIN_PASSWORD = "mi_clave_secreta_admin_08090706";
 
 export const GOOGLE_SHEET_ID =
   import.meta.env.VITE_GOOGLE_SHEET_ID ||
