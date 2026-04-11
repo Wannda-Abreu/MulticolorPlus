@@ -1,0 +1,74 @@
+export const seedProducts = [
+  {
+    name: "iPhone 15 Pro",
+    price: 1299,
+    oldPrice: 1449,
+    category: "iPhones",
+    image:
+      "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=80",
+    description:
+      "Pantalla brillante, camara potente y bateria lista para todo el dia.",
+    stock: 9,
+    rating: 4.9,
+  },
+  {
+    name: "Galaxy S24 Ultra",
+    price: 1149,
+    oldPrice: 1299,
+    category: "Android",
+    image:
+      "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=900&q=80",
+    description:
+      "Rendimiento premium con gran autonomia y fotografia avanzada.",
+    stock: 7,
+    rating: 4.8,
+  },
+  {
+    name: "iPad Air",
+    price: 649,
+    oldPrice: 719,
+    category: "Tablets",
+    image:
+      "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=900&q=80",
+    description:
+      "Pantalla fluida, formato ligero y perfecta para estudio, trabajo y ocio.",
+    stock: 12,
+    rating: 4.7,
+  },
+  {
+    name: "AirPods Pro",
+    price: 249,
+    oldPrice: 289,
+    category: "Audio",
+    image:
+      "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=900&q=80",
+    description:
+      "Cancelacion de ruido y comodidad para musica, llamadas y uso diario.",
+    stock: 16,
+    rating: 4.8,
+  },
+  {
+    name: "Power Bank 20.000 mAh",
+    price: 39,
+    oldPrice: 49,
+    category: "Accesorios",
+    image:
+      "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=900&q=80",
+    description:
+      "Bateria externa para viajes, trabajo o clases con carga rapida.",
+    stock: 30,
+    rating: 4.5,
+  },
+  {
+    name: "Funda MagSafe iPhone",
+    price: 24,
+    oldPrice: 32,
+    category: "Fundas y proteccion",
+    image:
+      "https://images.unsplash.com/photo-1603314585442-ee3b3c16fbcf?auto=format&fit=crop&w=900&q=80",
+    description:
+      "Proteccion ligera con buen ajuste y compatibilidad con MagSafe.",
+    stock: 22,
+    rating: 4.4,
+  },
+];
