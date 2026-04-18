@@ -5,14 +5,12 @@
     <title>Multicolor Plus</title>
     <script>
       (function () {
-        var segmentCount = 1;
         var location = window.location;
-        var repoBase = location.pathname
-          .split("/")
-          .slice(0, 1 + segmentCount)
-          .join("/");
-        var rest = location.pathname
-          .slice(repoBase.length)
+        var pathParts = location.pathname.split("/").filter(Boolean);
+        var hasBaseSegment = pathParts.length > 1;
+        var repoBase = hasBaseSegment ? "/" + pathParts[0] : "";
+        var rest = (hasBaseSegment ? pathParts.slice(1) : pathParts)
+          .join("/")
           .replace(/&/g, "~and~");
 
         var redirectUrl =
@@ -22,7 +20,7 @@
           (location.port ? ":" + location.port : "") +
           repoBase +
           "/?/" +
-          rest.replace(/^\//, "") +
+          rest +
           (location.search ? "&" + location.search.slice(1).replace(/&/g, "~and~") : "") +
           location.hash;
 

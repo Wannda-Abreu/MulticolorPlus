@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "../lib/router";
 
 export const NotFoundPage = () => (
   <main className="border-b border-slate-200 bg-white">

@@ -1,6 +1,6 @@
-import { Link, NavLink } from "react-router-dom";
-
 import { useCart } from "../../context/CartContext";
+import { ADMIN_ROUTE_PATH } from "../../lib/constants";
+import { Link, NavLink } from "../../lib/router";
 
 export const SiteHeader = () => {
   const { totalItems } = useCart();
@@ -38,6 +38,10 @@ export const SiteHeader = () => {
 
               <NavLink to="/checkout" className={linkClass}>
                 Checkout
+              </NavLink>
+
+              <NavLink to={ADMIN_ROUTE_PATH} className={linkClass}>
+                Admin
               </NavLink>
             </nav>
 

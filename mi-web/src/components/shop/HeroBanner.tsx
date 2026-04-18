@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
-
 import { heroImage } from "../../data/site";
+import { Link } from "../../lib/router";
 
 export const HeroBanner = () => (
   <section

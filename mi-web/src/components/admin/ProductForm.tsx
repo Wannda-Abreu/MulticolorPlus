@@ -15,12 +15,15 @@ const fields: Array<{
   key: keyof ProductFormValues;
   label: string;
   type?: string;
+  required?: boolean;
 }> = [
   { key: "name", label: "Nombre" },
   { key: "price", label: "Precio", type: "number" },
+  { key: "oldPrice", label: "Precio anterior", type: "number", required: false },
   { key: "category", label: "Categoria" },
   { key: "image", label: "URL de imagen" },
   { key: "stock", label: "Stock", type: "number" },
+  { key: "rating", label: "Rating", type: "number", required: false },
 ];
 
 export const ProductForm = ({
@@ -33,45 +36,38 @@ export const ProductForm = ({
 }: ProductFormProps) => (
   <form
     onSubmit={onSubmit}
-    className="rounded-[2.1rem] border border-white/70 bg-[linear-gradient(145deg,rgba(255,255,255,0.98),rgba(255,247,237,0.92),rgba(245,243,255,0.9))] p-6 shadow-[0_24px_60px_rgba(99,102,241,0.08)]"
+    className="rounded-[2rem] border border-white/70 bg-[linear-gradient(145deg,rgba(255,255,255,0.98),rgba(255,247,237,0.92),rgba(245,243,255,0.9))] p-6 shadow-[0_24px_60px_rgba(99,102,241,0.08)]"
   >
-    <div className="flex flex-wrap items-start justify-between gap-4">
-      <div className="space-y-2">
+    <div className="flex flex-wrap items-center justify-between gap-4">
+      <div>
         <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
           Formulario
         </p>
         <h2 className="mt-2 text-3xl font-black text-slate-950">
           {editingProductId ? "Editar producto" : "Crear producto"}
         </h2>
-        <p className="max-w-xl text-sm leading-6 text-slate-600">
-          Completa los datos esenciales del producto. La ficha quedara
-          disponible para la tienda y para el carrito.
-        </p>
       </div>
       {editingProductId ? (
         <button
           type="button"
           onClick={onReset}
-          className="rounded-2xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-500/10 hover:text-blue-600"
+          className="rounded-2xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700"
         >
-          Cancelar edicion
+          Cancelar
         </button>
       ) : null}
     </div>
 
-    <div className="mt-8 grid gap-4 rounded-[1.7rem] border border-white/70 bg-white/70 p-4 md:grid-cols-2">
+    <div className="mt-8 grid gap-4 md:grid-cols-2">
       {fields.map((field) => (
-        <label
-          key={field.key}
-          className="grid gap-2 text-sm font-medium text-slate-700"
-        >
+        <label key={field.key} className="grid gap-2 text-sm font-medium text-slate-700">
           <span>{field.label}</span>
           <input
             type={field.type || "text"}
             value={values[field.key]}
             onChange={(event) => onChange(field.key, event.target.value)}
-            className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-blue-300 focus:bg-white"
-            required
+            className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-red-400"
+            required={field.required !== false}
             step={field.type === "number" ? "0.1" : undefined}
             min={field.type === "number" ? "0" : undefined}
           />
@@ -82,7 +78,7 @@ export const ProductForm = ({
         <textarea
           value={values.description}
           onChange={(event) => onChange("description", event.target.value)}
-          className="min-h-32 rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-blue-300 focus:bg-white"
+          className="min-h-32 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-red-400"
           required
         />
       </label>
@@ -103,9 +99,9 @@ export const ProductForm = ({
       <button
         type="button"
         onClick={onReset}
-        className="rounded-2xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-500/10 hover:text-blue-600"
+        className="rounded-2xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700"
       >
-        Limpiar formulario
+        Limpiar
       </button>
     </div>
   </form>

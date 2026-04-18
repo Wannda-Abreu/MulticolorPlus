@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
-
 import { useCart } from "../context/CartContext";
 import { formatCurrency } from "../lib/format";
+import { Link } from "../lib/router";
 import { getCheckoutUrl } from "../lib/whatsapp";
 
 export const CheckoutPage = () => {
@@ -98,7 +97,7 @@ export const CheckoutPage = () => {
                 <div className="mt-6 grid gap-4">
               {items.map((item) => (
                 <article
-                  key={item._id}
+                  key={item.id}
                   className="grid gap-5 rounded-[1.75rem] border border-slate-200 bg-slate-50/70 p-4 sm:p-5 lg:grid-cols-[140px_minmax(0,1fr)_auto]"
                 >
                     <div className="flex items-center justify-center rounded-[1.5rem] bg-white p-4">
@@ -128,7 +127,7 @@ export const CheckoutPage = () => {
                           <button
                             onClick={() =>
                               updateQuantity(
-                                item._id,
+                                item.id,
                                 Math.max(1, item.quantity - 1),
                               )
                             }
@@ -141,7 +140,7 @@ export const CheckoutPage = () => {
                           </span>
                           <button
                             onClick={() =>
-                              updateQuantity(item._id, item.quantity + 1)
+                              updateQuantity(item.id, item.quantity + 1)
                             }
                             className="flex h-10 w-10 items-center justify-center rounded-full text-lg font-semibold text-slate-700 transition hover:bg-blue-500/10 hover:text-blue-600"
                           >
@@ -149,7 +148,7 @@ export const CheckoutPage = () => {
                           </button>
                         </div>
                         <button
-                          onClick={() => removeFromCart(item._id)}
+                          onClick={() => removeFromCart(item.id)}
                           className="text-sm font-semibold text-slate-500 transition hover:text-slate-950"
                         >
                           Quitar del carrito

@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
 
 import { CatalogFilters } from "../components/shop/CatalogFilters";
 import { CategoriesShowcase } from "../components/shop/CategoriesShowcase";
@@ -10,6 +9,7 @@ import { useCart } from "../context/CartContext";
 import { useFavorites } from "../hooks/useFavorites";
 import { useProducts } from "../hooks/useProducts";
 import { useSiteContent } from "../hooks/useSiteContent";
+import { Link } from "../lib/router";
 
 export const HomePage = () => {
   const { products, loading, error, reload } = useProducts();
@@ -74,7 +74,7 @@ export const HomePage = () => {
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
               <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-600">
-                Catalogo conectado
+                Catalogo desde JSON
               </p>
               <h2 className="mt-2 text-3xl font-black text-slate-950 sm:text-4xl">
                 Encuentra tu producto ideal
@@ -132,9 +132,9 @@ export const HomePage = () => {
             <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {filteredProducts.map((product) => (
                 <ProductCard
-                  key={product._id}
+                  key={product.id}
                   product={product}
-                  isFavorite={isFavorite(product._id)}
+                  isFavorite={isFavorite(product.id)}
                   onToggleFavorite={toggleFavorite}
                   onAddToCart={addToCart}
                 />

@@ -54,11 +54,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       totalItems,
       addToCart: (product) => {
         setItems((current) => {
-          const existing = current.find((entry) => entry._id === product._id);
+          const existing = current.find((entry) => entry.id === product.id);
 
           if (existing) {
             return current.map((entry) =>
-              entry._id === product._id
+              entry.id === product.id
                 ? { ...entry, quantity: entry.quantity + 1 }
                 : entry,
             );
@@ -68,15 +68,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         });
       },
       removeFromCart: (productId) => {
-        setItems((current) =>
-          current.filter((entry) => entry._id !== productId),
-        );
+        setItems((current) => current.filter((entry) => entry.id !== productId));
       },
       updateQuantity: (productId, quantity) => {
         setItems((current) =>
           current
             .map((entry) =>
-              entry._id === productId ? { ...entry, quantity } : entry,
+              entry.id === productId ? { ...entry, quantity } : entry,
             )
             .filter((entry) => entry.quantity > 0),
         );

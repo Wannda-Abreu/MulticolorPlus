@@ -1,39 +1,36 @@
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-
-import { ProtectedAdminRoute } from "./components/admin/ProtectedAdminRoute";
 import { SiteFooter } from "./components/layout/SiteFooter";
 import { SiteHeader } from "./components/layout/SiteHeader";
-import { AdminPage } from "./pages/AdminPage";
+import { Navigate, usePathname } from "./lib/router";
+import { ADMIN_ROUTE_PATH } from "./lib/constants";
+import { AdminAccessPage } from "./pages/AdminAccessPage";
 import { CheckoutPage } from "./pages/CheckoutPage";
 import { HomePage } from "./pages/HomePage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 
-const ADMIN_ROUTE = "/___admin___multicolorplus___";
-
 function App() {
-  const location = useLocation();
-  const isAdminRoute =
-    location.pathname === ADMIN_ROUTE || location.pathname === "/admin";
+  const pathname = usePathname();
+
+  let content;
+
+  if (pathname === "/") {
+    content = <HomePage />;
+  } else if (pathname === "/admin") {
+    content = <Navigate to={ADMIN_ROUTE_PATH} replace />;
+  } else if (pathname === ADMIN_ROUTE_PATH) {
+    content = <AdminAccessPage />;
+  } else if (pathname === "/checkout") {
+    content = <CheckoutPage />;
+  } else if (pathname === "/home") {
+    content = <Navigate to="/" replace />;
+  } else {
+    content = <NotFoundPage />;
+  }
 
   return (
     <div className="min-h-screen bg-[linear-gradient(180deg,#fff8f1_0%,#fff3f6_35%,#f7f6ff_68%,#eefcff_100%)] text-slate-950">
-      {!isAdminRoute ? <SiteHeader /> : null}
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/admin" element={<Navigate to={ADMIN_ROUTE} replace />} />
-        <Route
-          path={ADMIN_ROUTE}
-          element={
-            <ProtectedAdminRoute>
-              <AdminPage />
-            </ProtectedAdminRoute>
-          }
-        />
-        <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/home" element={<Navigate to="/" replace />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-      {!isAdminRoute ? <SiteFooter /> : null}
+      <SiteHeader />
+      {content}
+      <SiteFooter />
     </div>
   );
 }

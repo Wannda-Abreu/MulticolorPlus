@@ -19,7 +19,7 @@ export function FeaturedProducts() {
             Productos <span className="text-red-600">Destacados</span>
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-gray-600">
-            Seleccion dinamica conectada a Google Sheets
+            Seleccion dinamica cargada desde products.json
           </p>
         </div>
 
@@ -35,7 +35,7 @@ export function FeaturedProducts() {
           <div className="grid grid-cols-1 gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {featuredProducts.map((product) => (
               <article
-                key={product._id}
+                key={product.id}
                 className="group overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-2xl"
               >
                 <div className="relative overflow-hidden">
@@ -48,10 +48,10 @@ export function FeaturedProducts() {
                     Destacado
                   </div>
                   <button
-                    onClick={() => toggleFavorite(product._id)}
+                    onClick={() => toggleFavorite(product.id)}
                     className="absolute right-4 top-4 rounded-full bg-white px-3 py-2 text-xs font-semibold transition-colors hover:bg-red-50"
                   >
-                    {isFavorite(product._id) ? "Guardado" : "Guardar"}
+                    {isFavorite(product.id) ? "Guardado" : "Guardar"}
                   </button>
                 </div>
 

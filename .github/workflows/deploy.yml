@@ -39,6 +39,8 @@ jobs:
 
       - name: Build site
         working-directory: mi-web
+        env:
+          VITE_APP_BASE_PATH: /${{ github.event.repository.name }}/
         run: npm run build
 
       - name: Upload Pages artifact

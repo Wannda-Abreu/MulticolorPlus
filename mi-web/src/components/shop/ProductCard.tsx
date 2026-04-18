@@ -30,7 +30,7 @@ export const ProductCard = ({
         </div>
       ) : null}
       <button
-        onClick={() => onToggleFavorite(product._id)}
+        onClick={() => onToggleFavorite(product.id)}
         className={`absolute right-4 top-4 rounded-full px-3 py-2 text-xs font-semibold transition ${
           isFavorite
             ? "bg-blue-500/15 text-blue-700"
